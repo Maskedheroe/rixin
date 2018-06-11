@@ -14,6 +14,7 @@ public class Global {
     public static Context gContext;
 
 
+    private final static int FLAG = 1;
 
     public static void show(String paramString)
     {
