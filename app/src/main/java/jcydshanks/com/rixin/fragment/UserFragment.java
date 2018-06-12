@@ -21,7 +21,6 @@ public class UserFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
     public UserFragment() {
         // Required empty public constructor
     }
@@ -34,7 +33,7 @@ public class UserFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment UserFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static UserFragment newInstance(String param1, String param2) {
         UserFragment fragment = new UserFragment();
         Bundle args = new Bundle();

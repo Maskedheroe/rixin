@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/red"
+    android:background="@color/write"
     android:layout_width="match_parent"
     android:layout_height="60dp">
 
@@ -13,7 +13,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:padding="10.0dip"
-        android:src="@drawable/left_white_18dp" />
+        android:src="@drawable/left_black_18dp" />
        <TextView
            android:id="@+id/title"
            android:textSize="18.0sp"

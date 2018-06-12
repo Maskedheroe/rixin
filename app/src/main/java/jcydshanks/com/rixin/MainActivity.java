@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //初始化界面
+
     private void initView(){
 
         tabLayout=(TabLayout)findViewById(R.id.tablayout);
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //设置底部tab导航
+
     private void setTabs(TabLayout tabLayout, MainActivity mainActivity, LayoutInflater inflater, int[] tabImags){
         for (int i=0;i<tabImags.length;i++){
             TabLayout.Tab tab=tabLayout.newTab();
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     public void OnClick(View view){
         switch (view.getId()){
             case R.id.back:
@@ -75,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    //适配器
 
     private  class TabViewPagerAdapter extends FragmentPagerAdapter{
 
