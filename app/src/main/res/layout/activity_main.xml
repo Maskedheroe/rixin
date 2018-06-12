@@ -5,13 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="jcydshanks.com.rixin.MainActivity">
-    <LinearLayout
-        android:id="@+id/toolbar"
-        android:orientation="horizontal"
-        android:background="@color/red"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
+    <include layout="@layout/item_topbar"/>
 
-    </LinearLayout>
 
 </RelativeLayout>
