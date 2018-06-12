@@ -13,8 +13,7 @@ public class Global {
 
     public static Context gContext;
 
-
-    private final static int FLAG = 1;
+    public static int[] TAB_IMGS=new int[]{R.drawable.note,R.drawable.home,R.drawable.user};
 
     public static void show(String paramString)
     {
