@@ -1,4 +1,4 @@
 package fragment;
 
-public class RixinDelegate extends PermissionCheckedDelegate {
+public abstract class RixinDelegate extends PermissionCheckedDelegate {
 }
