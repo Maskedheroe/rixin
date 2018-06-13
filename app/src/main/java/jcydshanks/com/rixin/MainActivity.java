@@ -1,5 +1,7 @@
 package jcydshanks.com.rixin;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,9 +9,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import net.tsz.afinal.annotation.view.ViewInject;
 
@@ -19,6 +25,10 @@ import java.util.List;
 import jcydshanks.com.rixin.fragment.NewsFragment;
 import jcydshanks.com.rixin.fragment.ShouyeFragment;
 import jcydshanks.com.rixin.fragment.UserFragment;
+import me.yokeyword.fragmentation.ExtraTransaction;
+import me.yokeyword.fragmentation.ISupportActivity;
+import me.yokeyword.fragmentation.SupportActivityDelegate;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,11 +40,25 @@ public class MainActivity extends AppCompatActivity {
     private TabViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+    @ViewInject(id = R.id.tv_title)TextView tv_title;
     @ViewInject(id = R.id.back,click = "Onclick")ImageView back;
+    @ViewInject(id = R.id.head_img,click = "Onclick")ImageView head_img;
+    @ViewInject(id = R.id.notification_img,click = "Onclick")ImageView notification;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         newsFragment=new NewsFragment();
         shouyeFragment=new ShouyeFragment();
         userFragment=new UserFragment();
@@ -79,8 +103,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.back:
                 onBackPressed();
                 break;
+            case R.id.head_img:
+                break;
+            case R.id.notification_img:
+                break;
         }
     }
+
 
     //适配器
 
