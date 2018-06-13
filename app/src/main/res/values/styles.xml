@@ -7,5 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="TabTheme" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@color/write</item>
+        <item name="tabIndicatorColor">@color/gray</item>
+        <item name="tabSelectedTextColor">@color/red</item>
+        <item name="tabIndicatorHeight">0dp</item>
+    </style>
 
 </resources>

@@ -13,8 +13,9 @@ public class Global {
 
     public static Context gContext;
 
+    public static int[] TAB_IMGS=new int[]{R.drawable.note_selector,R.drawable.home_selector,R.drawable.user_selector};
 
-    private final static int FLAG = 1;
+    public static String[] TITLE=new String[]{"新闻","首页","我"};
 
     public static void show(String paramString)
     {
@@ -28,6 +29,4 @@ public class Global {
             localException.printStackTrace();
         }
     }
-
-
 }

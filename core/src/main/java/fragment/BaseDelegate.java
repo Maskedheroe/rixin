@@ -44,4 +44,12 @@ public abstract class BaseDelegate extends SwipeBackFragment {
             mUnbinder.unbind();
         }
     }
+
+    public Unbinder getmUnbinder() {
+        if (mUnbinder!=null){
+            return mUnbinder;
+        }else {
+            return ButterKnife.bind(this, (View) setLayout());
+        }
+    }
 }

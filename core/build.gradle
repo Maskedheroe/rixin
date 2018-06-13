@@ -33,6 +33,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //fragmentation
-    compile 'me.yokeyword:fragmentation-swipeback:1.3.4'
-    compile 'me.yokeyword:fragmentation:1.3.4'
+    implementation 'me.yokeyword:fragmentation:1.3.4'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.3.4'
+
+
 }
