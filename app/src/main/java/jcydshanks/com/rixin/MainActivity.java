@@ -2,19 +2,28 @@ package jcydshanks.com.rixin;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tsz.afinal.annotation.view.ViewInject;
@@ -30,7 +39,7 @@ import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.SupportActivityDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private List<Fragment> TAB_FRAGMENTS=new ArrayList();
     private final int COUNT=Global.TAB_IMGS.length;
@@ -42,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     @ViewInject(id = R.id.tv_title)TextView tv_title;
     @ViewInject(id = R.id.back,click = "Onclick")ImageView back;
-    @ViewInject(id = R.id.head_img,click = "Onclick")ImageView head_img;
+//    @ViewInject(id = R.id.head_img,click = "Onclick")ImageView head_img;
     @ViewInject(id = R.id.notification_img,click = "Onclick")ImageView notification;
 
+    private NavigationView nav;
+    private DrawerLayout drawLayout;
+    private ImageView head_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         TAB_FRAGMENTS.add(shouyeFragment);
         TAB_FRAGMENTS.add(userFragment);
         initView();
-
+        setListener();
     }
 
     //初始化界面
@@ -77,9 +89,33 @@ public class MainActivity extends AppCompatActivity {
         setTabs(tabLayout,this,getLayoutInflater(),Global.TAB_IMGS);
         mAdapter=new TabViewPagerAdapter(getSupportFragmentManager());
         mViewPager=(ViewPager)findViewById(R.id.viewpager);
+        drawLayout =(DrawerLayout) findViewById(R.id.draw_layout);
+        head_img = findViewById(R.id.head_img);
+        nav = findViewById(R.id.nav_view);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+
+    }
+
+    private void setListener() {
+        nav.setCheckedItem(R.id.selfdata);
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawLayout.closeDrawers();//关闭侧滑
+                return true;
+            }
+        });
+        if (head_img!=null) {
+            head_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    drawLayout.openDrawer(GravityCompat.START);
+                }
+            });
+        }
 
     }
 
@@ -94,22 +130,26 @@ public class MainActivity extends AppCompatActivity {
             imgTab.setImageResource(Global.TAB_IMGS[i]);
             tabLayout.addTab(tab);
         }
+
     }
 
 
 
-    public void OnClick(View view){
+
+
+    @Override
+    public void onClick(View view) {
         switch (view.getId()){
             case R.id.back:
                 onBackPressed();
                 break;
             case R.id.head_img:
+                drawLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.notification_img:
                 break;
         }
     }
-
 
     //适配器
 
