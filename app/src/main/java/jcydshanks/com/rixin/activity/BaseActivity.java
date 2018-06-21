@@ -2,17 +2,21 @@ package jcydshanks.com.rixin.activity;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.Nullable;
-import android.support.v4.app.SupportActivity;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ContentFrameLayout;
+import android.view.View;
 
 import fragment.RixinDelegate;
 import jcydshanks.com.rixin.R;
+import jcydshanks.com.rixin.fragment.NewsFragment;
+import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity {
 
     public abstract RixinDelegate setRootDelegate();
+
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -30,11 +34,9 @@ public abstract class BaseActivity extends SupportActivity {
             loadRootFragment(R.id.delegate_container,setRootDelegate());
         }
     }
-
     private void loadRootFragment(int delegate_container, RixinDelegate rixinDelegate) {
 
     }
-
 
     @Override
     protected void onDestroy() {

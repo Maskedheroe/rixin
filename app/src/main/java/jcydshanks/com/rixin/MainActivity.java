@@ -11,35 +11,26 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import net.tsz.afinal.annotation.view.ViewInject;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import fragment.RixinDelegate;
+import jcydshanks.com.rixin.activity.BaseActivity;
 import jcydshanks.com.rixin.fragment.NewsFragment;
 import jcydshanks.com.rixin.fragment.ShouyeFragment;
 import jcydshanks.com.rixin.fragment.UserFragment;
-import me.yokeyword.fragmentation.ExtraTransaction;
-import me.yokeyword.fragmentation.ISupportActivity;
-import me.yokeyword.fragmentation.SupportActivityDelegate;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private List<Fragment> TAB_FRAGMENTS=new ArrayList();
     private final int COUNT=Global.TAB_IMGS.length;
@@ -50,13 +41,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager mViewPager;
     private TabLayout tabLayout;
     @ViewInject(id = R.id.tv_title)TextView tv_title;
-    @ViewInject(id = R.id.back,click = "Onclick")ImageView back;
-//    @ViewInject(id = R.id.head_img,click = "Onclick")ImageView head_img;
-    @ViewInject(id = R.id.notification_img,click = "Onclick")ImageView notification;
+    @ViewInject(id = R.id.back,click = "OnClick")ImageView back;
+    @ViewInject(id = R.id.notification_img,click = "OnClick")ImageView notification;
 
     private NavigationView nav;
     private DrawerLayout drawLayout;
     private ImageView head_img;
+
+
+    @Override
+    public RixinDelegate setRootDelegate() {
+        return newsFragment;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,8 +130,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    public void OnClick(View view) {
+        switch (view.getId()){
+            case R.id.back:
+                onBackPressed();
+                break;
+            case R.id.head_img:
+                drawLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.notification_img:
+                break;
+        }
+    }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
 
     @Override
     public void onClick(View view) {
@@ -149,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.notification_img:
                 break;
         }
+
     }
 
     //适配器
