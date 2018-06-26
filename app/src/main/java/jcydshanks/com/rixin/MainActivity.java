@@ -40,18 +40,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private TabViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
-    @ViewInject(id = R.id.tv_title)TextView tv_title;
+//    @ViewInject(id = R.id.tv_title)TextView tv_title;
     @ViewInject(id = R.id.back,click = "OnClick")ImageView back;
     @ViewInject(id = R.id.notification_img,click = "OnClick")ImageView notification;
 
     private NavigationView nav;
     private DrawerLayout drawLayout;
     private ImageView head_img;
+    private TextView tv_title;
+    boolean isScrolled = false;
 
 
     @Override
     public RixinDelegate setRootDelegate() {
-        return newsFragment;
+        return shouyeFragment;
     }
 
     @Override
@@ -77,10 +79,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setListener();
     }
 
+
+    private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
+
+        private MyOnPageChangeListener() {}
+        public void onPageScrollStateChanged(int paramInt) {
+            switch (paramInt) {
+                case 1:// 手势滑动
+                    isScrolled = false;
+                    break;
+                case 2:// 界面切换
+                    isScrolled = false;
+                    break;
+            }
+        }
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+
+    }
+
     //初始化界面
-
     private void initView(){
-
+        tv_title = findViewById(R.id.tv_title);
         tabLayout=(TabLayout)findViewById(R.id.tablayout);
         setTabs(tabLayout,this,getLayoutInflater(),Global.TAB_IMGS);
         mAdapter=new TabViewPagerAdapter(getSupportFragmentManager());
@@ -93,8 +121,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
+
+
     }
 
+//  侧滑监听
     private void setListener() {
         nav.setCheckedItem(R.id.selfdata);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -173,6 +204,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         @Override
         public Fragment getItem(int position) {
+
             return TAB_FRAGMENTS.get(position);
         }
 
