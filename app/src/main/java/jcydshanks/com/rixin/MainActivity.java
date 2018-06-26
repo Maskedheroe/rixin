@@ -1,5 +1,6 @@
 package jcydshanks.com.rixin;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -9,13 +10,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+
+
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +35,7 @@ import jcydshanks.com.rixin.activity.BaseActivity;
 import jcydshanks.com.rixin.fragment.NewsFragment;
 import jcydshanks.com.rixin.fragment.ShouyeFragment;
 import jcydshanks.com.rixin.fragment.UserFragment;
+import jcydshanks.com.rixin.utils.NoScrollViewPager;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -40,16 +46,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ShouyeFragment shouyeFragment;
     private UserFragment userFragment;
     private TabViewPagerAdapter mAdapter;
-    private ViewPager mViewPager;
+    private NoScrollViewPager mViewPager;
     private TabLayout tabLayout;
-    //    @ViewInject(id = R.id.tv_title)TextView tv_title;
-    @ViewInject(id = R.id.back, click = "OnClick") ImageView back;
-    @ViewInject(id = R.id.notification_img, click = "OnClick") ImageView notification;
+    @ViewInject(id = R.id.back, click = "OnClick")
+    ImageView back;
+    @ViewInject(id = R.id.notification_img, click = "OnClick")
+    ImageView notification;
+
+//    @ViewInject(id = R.id.viewpager)NoScrollViewPager mViewPager;
     private NavigationView nav;
     private DrawerLayout drawLayout;
     private ImageView head_img;
     private TextView tv_title;
-    boolean isScrolled = false;
 
     @Override
     public RixinDelegate setRootDelegate() {
@@ -76,41 +84,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         TAB_FRAGMENTS.add(shouyeFragment);
         TAB_FRAGMENTS.add(userFragment);
         initView();
-        setListener();
-    }
-
-
-    private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
-
-        private MyOnPageChangeListener() {}
-        public void onPageScrollStateChanged(int paramInt) {
-            switch (paramInt) {
-                case 1:// 手势滑动
-                    isScrolled = false;
-                    break;
-                case 2:// 界面切换
-                    isScrolled = false;
-                    break;
-            }
-        }
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-        }
-
-
+        openLeftMenu();
     }
 
     //初始化界面
-    private void initView(){
+    private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         mAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = (NoScrollViewPager) findViewById(R.id.viewpager);
         drawLayout = (DrawerLayout) findViewById(R.id.draw_layout);
         tv_title = (TextView) findViewById(R.id.tv_title);
         head_img = findViewById(R.id.head_img);
@@ -123,8 +104,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tv_title.setText("新闻");
     }
 
-//  侧滑监听
-    private void setListener() {
+    //  侧滑监听
+    private void openLeftMenu() {
         nav.setCheckedItem(R.id.selfdata);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -157,6 +138,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             break;
                         case 1:
                             tv_title.setText("首页");
+
                             break;
                         case 2:
                             tv_title.setText("我");
@@ -230,4 +212,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     }
+
+
 }
