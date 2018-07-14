@@ -2,6 +2,7 @@ package jcydshanks.com.rixin.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -20,10 +21,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.tsz.afinal.FinalActivity;
+import net.tsz.afinal.FinalBitmap;
+import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.annotation.view.ViewInject;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.AjaxParams;
 
 import java.util.TimerTask;
 
+import jcydshanks.com.rixin.Global;
 import jcydshanks.com.rixin.MainActivity;
 import jcydshanks.com.rixin.R;
 
@@ -36,6 +42,7 @@ public class StartActivity extends AppCompatActivity {
 
     @ViewInject(id =R.id.guide_img)ImageView guide_img;
     @ViewInject(id = R.id.tg,click = "onClick")TextView tg;
+
 
 
     @Override
@@ -54,6 +61,7 @@ public class StartActivity extends AppCompatActivity {
         FinalActivity.initInjectedView(this);
         time=new TimeCount(6000,1000);
         mHandler.sendEmptyMessageDelayed(1000,2500);
+
 
 
     }
@@ -120,6 +128,7 @@ public class StartActivity extends AppCompatActivity {
             switch (message.what){
                 case GO_HOME:
                     try {
+
                         Glide.with(StartActivity.this).load(R.drawable.start_default).into(guide_img);
                         tg.setVisibility(View.VISIBLE);
                         time.start();

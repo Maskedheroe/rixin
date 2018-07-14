@@ -1,5 +1,6 @@
 package fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,12 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 
     private Unbinder mUnbinder = null;
+
+    public Context getmContext() {
+        return getContext();
+    }
+
+    private Context mContext = null;
 
     @Nullable
     @Override
@@ -43,7 +50,9 @@ public abstract class BaseDelegate extends SwipeBackFragment {
         if (mUnbinder!=null){
             mUnbinder.unbind();
         }
+
     }
+
 
     public Unbinder getmUnbinder() {
         if (mUnbinder!=null){

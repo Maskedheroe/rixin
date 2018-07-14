@@ -17,6 +17,8 @@ public class Global {
 
     public static String[] TITLE=new String[]{"新闻","首页","我"};
 
+    public static String BingURL=" http://bing.ioliu.cn/v1";
+
     public static void show(String paramString)
     {
         try

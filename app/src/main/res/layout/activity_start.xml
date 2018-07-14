@@ -7,19 +7,10 @@
     tools:context="jcydshanks.com.rixin.activity.StartActivity">
     <ImageView
         android:id="@+id/guide_img"
-        android:src="@drawable/start_default"
+        android:src="@mipmap/start_default"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <!--<ImageView-->
-        <!--android:id="@+id/img"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_marginBottom="30dp"-->
-        <!--android:src="@null"/>-->
     <TextView
         android:id="@+id/tg"
         android:layout_width="wrap_content"

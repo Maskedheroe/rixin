@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import net.tsz.afinal.FinalBitmap;
 import net.tsz.afinal.annotation.view.ViewInject;
 
 import fragment.RixinDelegate;
+import jcydshanks.com.rixin.Global;
+import jcydshanks.com.rixin.MainActivity;
 import jcydshanks.com.rixin.R;
 
 
@@ -23,7 +26,8 @@ public class NewsFragment extends RixinDelegate {
 
     @ViewInject(id = R.id.head_img,click = "OnClick")ImageView head_img;
     @ViewInject(id = R.id.draw_layout)DrawerLayout drawLayout;
-
+    @ViewInject(id= R.id.test)ImageView test;
+    public FinalBitmap finalBitmap;
 
     @Override
     public Object setLayout() {
@@ -34,7 +38,10 @@ public class NewsFragment extends RixinDelegate {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        finalBitmap=FinalBitmap.create(getContext());
+        finalBitmap.display(test, Global.BingURL+"/?w=1080&h=1920");
         return super.onCreateView(inflater, container, savedInstanceState);
+
     }
 
     @Override
@@ -49,4 +56,5 @@ public class NewsFragment extends RixinDelegate {
 
         }
     }
+
 }
