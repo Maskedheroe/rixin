@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.ContentFrameLayout;
 import android.view.View;
 
+import com.gyf.barlibrary.ImmersionBar;
+
 import fragment.RixinDelegate;
 import jcydshanks.com.rixin.R;
 import jcydshanks.com.rixin.fragment.NewsFragment;
@@ -23,6 +25,7 @@ public abstract class BaseActivity extends SupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initContainer(savedInstanceState);
+        initImmersionBar();
     }
 
     private void initContainer(@Nullable Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public abstract class BaseActivity extends SupportActivity {
             loadRootFragment(R.id.delegate_container,setRootDelegate());
         }
     }
+
     private void loadRootFragment(int delegate_container, RixinDelegate rixinDelegate) {
 
     }
@@ -43,5 +47,9 @@ public abstract class BaseActivity extends SupportActivity {
         super.onDestroy();
         System.gc();
         System.runFinalization();
+    }
+
+    public void initImmersionBar(){
+        ImmersionBar.with(this).statusBarDarkFont(true).transparentStatusBar() .init();
     }
 }

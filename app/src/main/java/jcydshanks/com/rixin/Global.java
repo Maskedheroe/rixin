@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 /**
  * Created by JcyDS on 2018/6/9.
+ * 全局变量/常量/方法
  * 封装Toast弹窗函数show，调用方法Global.show();
  * check用于检测customdialog的checkbox
  */
@@ -21,7 +22,7 @@ public class Global {
 
     public static String[] TITLE=new String[]{"新闻","首页","我"};
 
-    public static String BingURL=" http://bing.ioliu.cn/v1";
+    public static String BingURL=" http://bing.ioliu.cn/v1/";
 
     static {
         gContext=null;

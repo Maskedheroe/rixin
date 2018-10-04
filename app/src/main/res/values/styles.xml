@@ -28,19 +28,20 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground"> @android:color/transparent </item>
     </style>
-
-    <style name="CornerDialog" parent="Theme.AppCompat.Dialog">
-        <!-- 边框 -->
+    <style name="CornerDialog" parent="@android:style/Theme.Dialog">
+        <!--边框-->
         <item name="android:windowFrame">@null</item>
-        <!-- 无标题 -->
-        <item name="android:windowNoTitle">true</item>
-        <!-- 背景透明 -->
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <!-- 悬浮在Activity上 -->
+        <!--悬浮在activity上-->
         <item name="android:windowIsFloating">true</item>
-        <!-- 对话框是否有遮盖 -->
-        <item name="android:windowContentOverlay">@null</item>
-
+        <!--窗口透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--无标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--背景透明-->
+        <item name="android:background">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--其他区域加阴影-->
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
-
 </resources>

@@ -8,6 +8,9 @@
             android:title="学校概况"/>
         <item android:id="@+id/aboutus"
             android:title="关于"/>
+        <item android:id="@+id/cover_wallpaper"
+            android:title="每日壁纸"
+            />
         <item android:id="@+id/feedback"
             android:title="意见反馈"
             />
