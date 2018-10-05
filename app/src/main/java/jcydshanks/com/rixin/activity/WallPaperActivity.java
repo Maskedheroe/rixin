@@ -8,8 +8,9 @@ import com.gyf.barlibrary.ImmersionBar;
 
 import fragment.RixinDelegate;
 import jcydshanks.com.rixin.R;
+import jcydshanks.com.rixin.interfaces.ISetRootDelegate;
 
-public class WallPaperActivity extends BaseActivity {
+public class WallPaperActivity extends BaseActivity implements ISetRootDelegate {
 
     private Toolbar toolbar;
 
@@ -20,14 +21,16 @@ public class WallPaperActivity extends BaseActivity {
         toolbar = findViewById(R.id.topview);
     }
 
-    @Override
-    public RixinDelegate setRootDelegate() {
-        return null;
-    }
+
 
     @Override
     public void initImmersionBar() {
         super.initImmersionBar();
         ImmersionBar.with(this).statusBarColor(R.color.write).statusBarDarkFont(true).fitsSystemWindows(true).init();
+    }
+
+    @Override
+    public RixinDelegate setRootDelegate() {
+        return null;
     }
 }

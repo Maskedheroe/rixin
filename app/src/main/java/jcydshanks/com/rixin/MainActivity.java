@@ -58,10 +58,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_title;
     private ImageView notification;
 
-    @Override
-    public RixinDelegate setRootDelegate() {
-        return shouyeFragment;
-    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +111,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     //  侧滑监听
     private void openLeftMenu() {
-        nav.setCheckedItem(R.id.selfdata);
+
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -122,7 +120,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         startActivity(new Intent(MainActivity.this,WallPaperActivity.class));
                         break;
                 }
+
                 drawLayout.closeDrawers();//关闭侧滑
+
                 return true;
             }
         });

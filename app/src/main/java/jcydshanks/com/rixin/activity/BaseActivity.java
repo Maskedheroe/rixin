@@ -13,12 +13,13 @@ import com.gyf.barlibrary.ImmersionBar;
 import fragment.RixinDelegate;
 import jcydshanks.com.rixin.R;
 import jcydshanks.com.rixin.fragment.NewsFragment;
+import jcydshanks.com.rixin.interfaces.ISetRootDelegate;
 import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity {
 
-    public abstract RixinDelegate setRootDelegate();
 
+    private ISetRootDelegate setRootDelegate;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -33,8 +34,8 @@ public abstract class BaseActivity extends SupportActivity {
 
         container.setId(R.id.delegate_container);
         setContentView(container);
-        if (savedInstanceState == null){
-            loadRootFragment(R.id.delegate_container,setRootDelegate());
+        if (savedInstanceState == null&&setRootDelegate!=null){
+            loadRootFragment(R.id.delegate_container,setRootDelegate.setRootDelegate());
         }
     }
 
